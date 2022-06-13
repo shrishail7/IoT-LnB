@@ -1,0 +1,53 @@
+{% extends 'dashboard.html' %}
+
+{% block body %}
+<div class="container">
+    <form action="/" method="post">
+        
+        <div class="mb3">
+            
+            <label for="Temperature" class="form-label">Temperature <sup>0</sup>C</label>
+            <input type="number" min="0" max="100" required class="form-range" name ='Temperature' id="Temperature">
+
+        </div>
+        <br>
+        <div>
+
+            <label for="Heart_Beat" class="form-label">Heart Beat (BPM)</label>
+            <input type="number" class="form-range" min="60" max="100" required name ='Heart_Beat' id="Heart_Beat">
+
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sr. No</th>
+        <th scope="col">Temperature</th>
+        <th scope="col">Heart_Beat</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for Database in data %}
+        <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{Database.Temperature}}</td>
+            <td>{{Database.Heart_Beat}}</td>
+            <td>{{Database.date}}</td>
+            <td>
+                <a href="/delete/{{Database.sr}}" type="button" class="btn btn-primary mx-1" style=" background-color:black ;">Delete</button>
+            </td>
+          </tr>
+        {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+{% endblock body %}
+
